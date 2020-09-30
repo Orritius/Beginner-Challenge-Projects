@@ -29,6 +29,7 @@ public class MagicEightBallChallenge {
             char userResponse = sc.nextLine().charAt(0);
 
             if (userResponse == 'N' || userResponse == 'n') {
+                sc.close();
                 playAgain = false;
             }
 
