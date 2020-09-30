@@ -1,5 +1,3 @@
-import com.sun.org.apache.xerces.internal.impl.xpath.regex.RegularExpression;
-
 import java.util.ArrayList;
 
 public class BeginnerChallenges {
@@ -11,6 +9,9 @@ public class BeginnerChallenges {
         System.out.println(bc.isArmstrong(1634));
         System.out.println(bc.isArmstrong(256));
         System.out.println(bc.isArmstrong(371));
+
+        MagicEightBallChallenge magicEight = new MagicEightBallChallenge();
+        magicEight.askTheEightBall();
     }
 
     /**
