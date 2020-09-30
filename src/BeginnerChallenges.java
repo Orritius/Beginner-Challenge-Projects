@@ -61,9 +61,6 @@ public class BeginnerChallenges {
         /* Finally, if the sum of each number multiplied by the length of the number is equal to the initial number
         *  return true, else false.
          */
-        /* Finally, if the sum of each number multiplied by the length of the number is equal to the initial number
-        *  return true, else false.
-         */
         return armstrongCalculation == theNumber;
     }
 }
