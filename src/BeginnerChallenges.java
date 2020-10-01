@@ -10,8 +10,7 @@ public class BeginnerChallenges {
         System.out.println(bc.isArmstrong(256));
         System.out.println(bc.isArmstrong(371));
 
-        MagicEightBallChallenge magicEight = new MagicEightBallChallenge();
-        magicEight.askTheEightBall();
+        new MagicEightBallChallenge();
     }
 
     /**
