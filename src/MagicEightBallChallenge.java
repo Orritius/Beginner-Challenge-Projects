@@ -20,6 +20,7 @@ public class MagicEightBallChallenge extends JFrame{
 
     public MagicEightBallChallenge(){
         initComponents();
+        go();
     }
 
     // Set up all components of the GUI and add button action listeners
@@ -56,8 +57,6 @@ public class MagicEightBallChallenge extends JFrame{
         playAgainButton.addActionListener(e -> playAgainButtonActionPerformed());
 
         quitButton.addActionListener(e -> quitButtonActionPerformed());
-
-        go();
     }
 
     // Simulate thinking of eight ball by starting new thread with sleep function
@@ -82,15 +81,14 @@ public class MagicEightBallChallenge extends JFrame{
         public void run(){
             try {
                 TimeUnit.SECONDS.sleep(3);
+                int response = (int) (Math.random() * responses.length);
+                eightBallAnswerLabel.setText(responses[response]);
             } catch (InterruptedException ie) {
                 ie.printStackTrace();
             }
-            int response = (int) (Math.random() * responses.length);
-
-            eightBallAnswerLabel.setText(responses[response]);
         }
     }
-    
+
     // Action Listeners methods
     private void askButtonActionPerformed(){
         askTheEightBall();
@@ -107,5 +105,5 @@ public class MagicEightBallChallenge extends JFrame{
     private void quitButtonActionPerformed(){
         dispose();
     }
-    
+
 }
