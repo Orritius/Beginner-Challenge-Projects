@@ -81,7 +81,7 @@ public class MagicEightBallChallenge extends JFrame{
         public void run(){
             try {
                 TimeUnit.SECONDS.sleep(3);
-                int response = (int) (Math.random() * responses.length);
+                int response = new Random().nextInt(responses.length);
                 eightBallAnswerLabel.setText(responses[response]);
             } catch (InterruptedException ie) {
                 ie.printStackTrace();
