@@ -10,6 +10,13 @@ public class BeginnerChallenges {
         System.out.println(bc.isArmstrong(256));
         System.out.println(bc.isArmstrong(371));
 
+        System.out.println("Pythagorean Triple checker output:");
+        System.out.println(bc.isPythagoreanTriple(3, 4, 5));
+        System.out.println(bc.isPythagoreanTriple(5, 3, 4));
+        System.out.println(bc.isPythagoreanTriple(4, 5, 3));
+        System.out.println(bc.isPythagoreanTriple(13, 84, 85));
+
+        
         new MagicEightBallChallenge();
     }
 
@@ -61,5 +68,41 @@ public class BeginnerChallenges {
         *  return true, else false.
          */
         return armstrongCalculation == theNumber;
+    }
+    /**
+     * Pythagorean triples checker challenge
+     * @param a
+     * @param b
+     * @param c
+     * @return true if the triangle is a Pythagorean triple, false otherwise
+     */
+    private boolean isPythagoreanTriple(int a, int b, int c){
+        int hypotenuse;
+
+        if (a <= 0 || b <= 0 || c <= 0){
+            System.out.println("All integers must be positive");
+        }
+
+        if (a > b && a > c){
+            hypotenuse = a;
+        } else if (b > c)
+            hypotenuse = b;
+        else
+            hypotenuse = c;
+
+        ArrayList<Integer> oppositeAndAdjacentAngles = new ArrayList<>();
+
+        if (a != hypotenuse){
+            oppositeAndAdjacentAngles.add(a);
+        }
+        if (b != hypotenuse){
+            oppositeAndAdjacentAngles.add(b);
+        }
+        if (c != hypotenuse){
+            oppositeAndAdjacentAngles.add(c);
+        }
+
+        return (Math.pow(oppositeAndAdjacentAngles.get(0), 2)) + (Math.pow(oppositeAndAdjacentAngles.get(1), 2))
+                == (Math.pow(hypotenuse, 2));
     }
 }
