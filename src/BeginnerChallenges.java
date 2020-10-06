@@ -18,6 +18,9 @@ public class BeginnerChallenges {
 
         
         new MagicEightBallChallenge();
+        
+        RockPaperScissors rps = new RockPaperScissors();
+        rps.startGame();
     }
 
     /**
