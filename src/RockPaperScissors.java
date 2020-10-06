@@ -39,6 +39,7 @@ public class RockPaperScissors {
                 char userResponse = sc.nextLine().toLowerCase().charAt(0);
                 if (userResponse == 'n'){
                     System.out.println("Exiting game");
+                    sc.close();
                     playAgain = false;
                 } else {
                     System.out.println("Setting up another game!");
