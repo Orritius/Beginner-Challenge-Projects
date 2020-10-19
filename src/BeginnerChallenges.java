@@ -21,6 +21,9 @@ public class BeginnerChallenges {
         
         RockPaperScissors rps = new RockPaperScissors();
         rps.startGame();
+        
+        CoinEstimator.numOfWrappersAndCoins(new BigDecimal("587.50"), new BigDecimal("960"),
+                new BigDecimal("222.264"), new BigDecimal("250.515"));
     }
 
     /**
