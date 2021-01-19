@@ -4,10 +4,8 @@ import java.math.RoundingMode;
 public abstract class CoinCalculator {
     public static final String[] UNITED_KINGDOM_COINS = {("2.00"), ("1.00"), ("0.50"), ("0.20"), ("0.10"),
             ("0.05"), ("0.02"), ("0.01")};
-
-    //TODO increase efficiency and maintainability. This is currently very verbose solution
+    
     /*
-    Start of an unoptimised solution
     The challenge uses US currency, I shall be using UK currency. Program assumes that we're prioritising giving
     the customer the highest amount of change. I.e. we give 47p back as two 20 pence coins, three two pence coins
     and one 1 pence coin.
