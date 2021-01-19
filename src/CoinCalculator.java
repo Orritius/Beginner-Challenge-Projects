@@ -2,8 +2,10 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 
 public abstract class CoinCalculator {
+    public static final String[] UNITED_KINGDOM_COINS = {("2.00"), ("1.00"), ("0.50"), ("0.20"), ("0.10"),
+            ("0.05"), ("0.02"), ("0.01")};
 
-    //TODO increase efficiency and maintainability. This is currently very verbose solution    
+    //TODO increase efficiency and maintainability. This is currently very verbose solution
     /*
     Start of an unoptimised solution
     The challenge uses US currency, I shall be using UK currency. Program assumes that we're prioritising giving
@@ -11,11 +13,14 @@ public abstract class CoinCalculator {
     and one 1 pence coin.
     Change coins given:
     £2, £1, £0.50, £0.20, £0.10, £0.05, £0.02, £0.01
+    Program challenge states that coins that are not given still need to be stated in output i.e.
+    "Number of £2 coins is: 0"
      */
-    public static BigDecimal calculateChange(BigDecimal anAmount){
-        // variable to store the amount left after a certain amount of change has been given
+    public static void calculateChange(BigDecimal anAmount){
+        // Variable to keep track of how much change is still required to be given
         BigDecimal amountLeft = anAmount;
-        // amount of change variables initialised
+        // Variables to track the amount of each coin that needs to be given
+        //TODO consider that this could be put into a collection?
         BigDecimal numOfTwoPoundCoins = new BigDecimal("0");
         BigDecimal numOfOnePoundCoins = new BigDecimal("0");
         BigDecimal numOfFiftyPenceCoins = new BigDecimal("0");
@@ -25,55 +30,52 @@ public abstract class CoinCalculator {
         BigDecimal numOfTwoPenceCoins = new BigDecimal("0");
         BigDecimal numOfOnePenceCoins = new BigDecimal("0");
 
-        if (!amountLeft.divide(new BigDecimal("2.00"), 0, RoundingMode.FLOOR).equals(new BigDecimal("0"))){
-            numOfTwoPoundCoins = amountLeft.divide(new BigDecimal("2.00"),0, RoundingMode.DOWN);
-            amountLeft = amountLeft.subtract(numOfTwoPoundCoins.multiply(new BigDecimal("2.00")));
-            System.out.println("This is the number of two pound coins change that was recorded " + numOfTwoPoundCoins);
-            System.out.println("This is the new amount that is left after our calculation " + amountLeft);
+        for (int i = 0; i < 8; i++){
+            if (!amountLeft.divide(new BigDecimal(UNITED_KINGDOM_COINS[i]), 0 , RoundingMode.FLOOR)
+            .equals(new BigDecimal("0"))){
+                switch (i){
+                    case 0:
+                        numOfTwoPoundCoins = amountLeft.divide(new BigDecimal("2.00"),0, RoundingMode.DOWN);
+                        amountLeft = amountLeft.subtract(numOfTwoPoundCoins.multiply(new BigDecimal("2.00")));
+                        System.out.println("Number of £2 coins needed: "
+                                + numOfTwoPoundCoins);
+                    case 1:
+                        numOfOnePoundCoins = amountLeft.divide(new BigDecimal("1.00"),0, RoundingMode.DOWN);
+                        amountLeft = amountLeft.subtract(numOfOnePoundCoins.multiply(new BigDecimal("1.00")));
+                        System.out.println("Number of £1 coins needed: "
+                                + numOfOnePoundCoins);
+                    case 2:
+                        numOfFiftyPenceCoins = amountLeft.divide(new BigDecimal("0.50"),0, RoundingMode.DOWN);
+                        amountLeft = amountLeft.subtract(numOfFiftyPenceCoins.multiply(new BigDecimal("0.50")));
+                        System.out.println("Number of 50p coins needed: "
+                                + numOfFiftyPenceCoins);
+                    case 3:
+                        numOfTwentyPenceCoins = amountLeft.divide(new BigDecimal("0.20"),0, RoundingMode.DOWN);
+                        amountLeft = amountLeft.subtract(numOfTwentyPenceCoins.multiply(new BigDecimal("0.20")));
+                        System.out.println("Number of 20p coins needed: "
+                                + numOfTwentyPenceCoins);
+                    case 4:
+                        numOfTenPenceCoins = amountLeft.divide(new BigDecimal("0.10"),0, RoundingMode.DOWN);
+                        amountLeft = amountLeft.subtract(numOfTenPenceCoins.multiply(new BigDecimal("0.10")));
+                        System.out.println("Number of 10p coins needed: "
+                                + numOfTenPenceCoins);
+                    case 5:
+                        numOfFivePenceCoins = amountLeft.divide(new BigDecimal("0.05"),0, RoundingMode.DOWN);
+                        amountLeft = amountLeft.subtract(numOfFivePenceCoins.multiply(new BigDecimal("0.05")));
+                        System.out.println("Number of 5p coins needed: "
+                                + numOfFivePenceCoins);
+                    case 6:
+                        numOfTwoPenceCoins = amountLeft.divide(new BigDecimal("0.02"),0, RoundingMode.DOWN);
+                        amountLeft = amountLeft.subtract(numOfTwoPenceCoins.multiply(new BigDecimal("0.02")));
+                        System.out.println("Number of 2p coins needed: "
+                                + numOfTwoPenceCoins);
+                    case 7:
+                        numOfOnePenceCoins = amountLeft.divide(new BigDecimal("0.01"),0, RoundingMode.DOWN);
+                        amountLeft = amountLeft.subtract(numOfOnePenceCoins.multiply(new BigDecimal("0.01")));
+                        System.out.println("Number of 1p coins needed: "
+                                + numOfOnePenceCoins);
+                }
+            }
         }
-        if (!amountLeft.divide(new BigDecimal("1.00"), 0, RoundingMode.FLOOR).equals(new BigDecimal("0"))){
-            numOfOnePoundCoins = amountLeft.divide(new BigDecimal("1.00"),0, RoundingMode.DOWN);
-            amountLeft = amountLeft.subtract(numOfOnePoundCoins.multiply(new BigDecimal("1.00")));
-            System.out.println("This is the number of one pound coins change that was recorded " + numOfOnePoundCoins);
-            System.out.println("This is the new amount that is left after our calculation " + amountLeft);
-        }
-        if (!amountLeft.divide(new BigDecimal("0.50"), 0, RoundingMode.FLOOR).equals(new BigDecimal("0"))){
-            numOfFiftyPenceCoins = amountLeft.divide(new BigDecimal("0.50"),0, RoundingMode.DOWN);
-            amountLeft = amountLeft.subtract(numOfFiftyPenceCoins.multiply(new BigDecimal("0.50")));
-            System.out.println("This is the number of fifty pence change that was recorded " + numOfFiftyPenceCoins);
-            System.out.println("This is the new amount that is left after our calculation " + amountLeft);
-        }
-        if (!amountLeft.divide(new BigDecimal("0.20"), 0, RoundingMode.FLOOR).equals(new BigDecimal("0"))){
-            numOfTwentyPenceCoins = amountLeft.divide(new BigDecimal("0.20"),0, RoundingMode.DOWN);
-            amountLeft = amountLeft.subtract(numOfTwentyPenceCoins.multiply(new BigDecimal("0.20")));
-            System.out.println("This is the number of twenty pence change that was recorded " + numOfTwentyPenceCoins);
-            System.out.println("This is the new amount that is left after our calculation " + amountLeft);
-        }
-        if (!amountLeft.divide(new BigDecimal("0.10"), 0, RoundingMode.FLOOR).equals(new BigDecimal("0"))){
-            numOfTenPenceCoins = amountLeft.divide(new BigDecimal("0.10"),0, RoundingMode.DOWN);
-            amountLeft = amountLeft.subtract(numOfTenPenceCoins.multiply(new BigDecimal("0.10")));
-            System.out.println("This is the number of ten pence change that was recorded " + numOfTenPenceCoins);
-            System.out.println("This is the new amount that is left after our calculation " + amountLeft);
-        }
-        if (!amountLeft.divide(new BigDecimal("0.05"), 0, RoundingMode.FLOOR).equals(new BigDecimal("0"))){
-            numOfFivePenceCoins = amountLeft.divide(new BigDecimal("0.05"),0, RoundingMode.DOWN);
-            amountLeft = amountLeft.subtract(numOfFivePenceCoins.multiply(new BigDecimal("0.05")));
-            System.out.println("This is the number of five pence change that was recorded " + numOfFivePenceCoins);
-            System.out.println("This is the new amount that is left after our calculation " + amountLeft);
-        }
-        if (!amountLeft.divide(new BigDecimal("0.02"), 0, RoundingMode.FLOOR).equals(new BigDecimal("0"))){
-            numOfTwoPenceCoins = amountLeft.divide(new BigDecimal("0.02"),0, RoundingMode.DOWN);
-            amountLeft = amountLeft.subtract(numOfTwoPenceCoins.multiply(new BigDecimal("0.02")));
-            System.out.println("This is the number of two pence change that was recorded " + numOfTwoPenceCoins);
-            System.out.println("This is the new amount that is left after our calculation " + amountLeft);
-        }
-        if (!amountLeft.divide(new BigDecimal("0.01"), 0, RoundingMode.FLOOR).equals(new BigDecimal("0"))){
-            numOfOnePenceCoins = amountLeft.divide(new BigDecimal("0.01"),0, RoundingMode.DOWN);
-            amountLeft = amountLeft.subtract(numOfOnePenceCoins.multiply(new BigDecimal("0.01")));
-            System.out.println("This is the number of one pence change that was recorded " + numOfOnePenceCoins);
-            System.out.println("This is the new amount that is left after our calculation " + amountLeft);
-        }
-
-        return anAmount;
     }
 }
