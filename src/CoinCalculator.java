@@ -5,7 +5,8 @@ public abstract class CoinCalculator {
     public static final String[] UNITED_KINGDOM_COINS = {("2.00"), ("1.00"), ("0.50"), ("0.20"), ("0.10"),
             ("0.05"), ("0.02"), ("0.01")};
 
-    //TODO consider changing new bigdecimal to the array location United kingdom coins instead!!!!
+    //TODO subgoal - calculate how much change is needed from a transaction, instead of being given the amount of change
+    //TODO subgoal - Loop the program
     /*
     The challenge uses US currency, I shall be using UK currency. Program assumes that we're prioritising giving
     the customer the highest amount of change. I.e. we give 47p back as two 20 pence coins, three two pence coins
