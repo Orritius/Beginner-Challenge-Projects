@@ -4,7 +4,8 @@ import java.math.RoundingMode;
 public abstract class CoinCalculator {
     public static final String[] UNITED_KINGDOM_COINS = {("2.00"), ("1.00"), ("0.50"), ("0.20"), ("0.10"),
             ("0.05"), ("0.02"), ("0.01")};
-    
+
+    //TODO consider changing new bigdecimal to the array location United kingdom coins instead!!!!
     /*
     The challenge uses US currency, I shall be using UK currency. Program assumes that we're prioritising giving
     the customer the highest amount of change. I.e. we give 47p back as two 20 pence coins, three two pence coins
@@ -27,43 +28,10 @@ public abstract class CoinCalculator {
         to do any form of testing first (as in previous solution iterations)
          */
 
-        numOfCoins[0] = amountLeft.divide(new BigDecimal("2.00"),0, RoundingMode.DOWN);
-        amountLeft = amountLeft.subtract(numOfCoins[0].multiply(new BigDecimal("2.00")));
-        System.out.println("Number of £2 coins needed: "
-                                + numOfCoins[0]);
-
-        numOfCoins[1] = amountLeft.divide(new BigDecimal("1.00"),0, RoundingMode.DOWN);
-        amountLeft = amountLeft.subtract(numOfCoins[1].multiply(new BigDecimal("1.00")));
-        System.out.println("Number of £1 coins needed: "
-                + numOfCoins[1]);
-
-        numOfCoins[2] = amountLeft.divide(new BigDecimal("0.50"),0, RoundingMode.DOWN);
-        amountLeft = amountLeft.subtract(numOfCoins[2].multiply(new BigDecimal("0.50")));
-        System.out.println("Number of 50p coins needed: "
-                + numOfCoins[2]);
-
-        numOfCoins[3] = amountLeft.divide(new BigDecimal("0.20"),0, RoundingMode.DOWN);
-        amountLeft = amountLeft.subtract(numOfCoins[3].multiply(new BigDecimal("0.20")));
-        System.out.println("Number of 20p coins needed: "
-                + numOfCoins[3]);
-
-        numOfCoins[4] = amountLeft.divide(new BigDecimal("0.10"),0, RoundingMode.DOWN);
-        amountLeft = amountLeft.subtract(numOfCoins[4].multiply(new BigDecimal("0.10")));
-        System.out.println("Number of 10p coins needed: "
-                + numOfCoins[4]);
-
-        numOfCoins[5] = amountLeft.divide(new BigDecimal("0.05"),0, RoundingMode.DOWN);
-        amountLeft = amountLeft.subtract(numOfCoins[5].multiply(new BigDecimal("0.05")));
-        System.out.println("Number of 5p coins needed: "
-                + numOfCoins[5]);
-
-        numOfCoins[6] = amountLeft.divide(new BigDecimal("0.02"),0, RoundingMode.DOWN);
-        amountLeft = amountLeft.subtract(numOfCoins[6].multiply(new BigDecimal("0.02")));
-        System.out.println("Number of 2p coins needed: "
-                + numOfCoins[6]);
-
-        numOfCoins[7] = amountLeft.divide(new BigDecimal("0.01"),0, RoundingMode.DOWN);
-        System.out.println("Number of 1p coins needed: "
-                + numOfCoins[7]);
+        for (int i = 0; i < 8; i++){
+            numOfCoins[i] = amountLeft.divide(new BigDecimal(UNITED_KINGDOM_COINS[i]), 0, RoundingMode.FLOOR);
+            amountLeft = amountLeft.subtract(numOfCoins[i].multiply(new BigDecimal(UNITED_KINGDOM_COINS[i])));
+            System.out.println("Number of £" + UNITED_KINGDOM_COINS[i] + " needed: " + numOfCoins[i]);
+        }
     }
 }
