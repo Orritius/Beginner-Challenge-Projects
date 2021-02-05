@@ -6,6 +6,8 @@ public abstract class CoinCalculator {
             ("0.05"), ("0.02"), ("0.01")};
 
     //TODO subgoal - Loop the program
+    //TODO create alternate version of the program where the user inputs the values rather than providing them as an
+    // argument
     /**
     The challenge uses US currency, I shall be using UK currency. Program assumes that we're prioritising giving
     the customer the highest amount of change. I.e. we give 47p back as two 20 pence coins, three two pence coins
