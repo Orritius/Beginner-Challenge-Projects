@@ -20,9 +20,9 @@ public abstract class CoinCalculatorAlternate {
      */
     public static void calculateChange(){
         System.out.println("Please enter all currency values as such: 10.42/3.56/4.95 etc");
+        Scanner sc = new Scanner(System.in);
         while (true){
             System.out.println("Please enter the total cost of the transaction: ");
-            Scanner sc = new Scanner(System.in);
             BigDecimal costOfTransaction = new BigDecimal(sc.next());
 
             System.out.println("Please enter the amount of money tendered: ");
