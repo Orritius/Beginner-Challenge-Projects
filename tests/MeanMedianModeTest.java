@@ -18,6 +18,8 @@ public class MeanMedianModeTest {
 
     @Test
     public void median() {
+        MeanMedianMode.median(nums);
+        MeanMedianMode.median(nums2);
     }
 
     @Test
