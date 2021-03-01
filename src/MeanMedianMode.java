@@ -28,8 +28,23 @@ public abstract class MeanMedianMode {
         return mostFrequentNum;
     }
 
-    public static int median(int[] nums){
-        return 0;
+   public static void median(int[] nums){
+        Arrays.sort(nums);
+        
+        if (nums.length % 2 == 0){
+            medianEven(nums);
+        } else {
+            medianOdd(nums);
+        }
+    }
+
+    private static void medianOdd(int[] nums){
+        System.out.println(nums[nums.length/2]);
+    }
+
+    private static void medianEven(int [] nums){
+        System.out.println(nums[nums.length/2 - 1]);
+        System.out.println(nums[nums.length/2]);
     }
 
     public static int mean(int[] nums){
