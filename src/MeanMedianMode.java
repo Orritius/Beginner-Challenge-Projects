@@ -28,6 +28,7 @@ public abstract class MeanMedianMode {
         return mostFrequentNum;
     }
 
+   //TODO return values instead of printing, potentially use a list since we can't return two different value types?
    public static void median(int[] nums){
         Arrays.sort(nums);
         
