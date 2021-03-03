@@ -4,6 +4,7 @@ import java.util.TreeMap;
 // Class to calculate the mean, median and mode for a user. Testing for this class can be found in the tests folder.
 public abstract class MeanMedianMode {
 
+    //TODO alter method so it can return multiple modes if appropriate
     public static int mode(int[] nums){
         int highestNumOfOccurrences = 0;
         int mostFrequentNum = 0;
