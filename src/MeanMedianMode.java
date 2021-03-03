@@ -48,7 +48,23 @@ public abstract class MeanMedianMode {
         System.out.println(nums[nums.length/2]);
     }
 
-    public static int mean(int[] nums){
-        return 0;
+    public static BigDecimal mean(int[] nums, int decimalPlaces){
+        if (decimalPlaces < 0){
+            System.out.println("Please enter zero or greater for the number of decimal places of the result");
+            return new BigDecimal(0);
+        } else {
+            int totalInteger = 0;
+
+            for (int num : nums){
+                totalInteger += num;
+            }
+
+            BigDecimal totalBigDec = new BigDecimal(totalInteger);
+            BigDecimal arrayLength = new BigDecimal(nums.length);
+            BigDecimal result = totalBigDec.divide(arrayLength, decimalPlaces, RoundingMode.HALF_UP);
+
+            System.out.println("The Mean is: " + result);
+            return result;
+        }
     }
 }
