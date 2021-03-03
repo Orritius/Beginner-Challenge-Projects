@@ -24,5 +24,7 @@ public class MeanMedianModeTest {
 
     @Test
     public void mean() {
+        MeanMedianMode.mean(nums, 2);
+        MeanMedianMode.mean(nums2, 2);
     }
 }
