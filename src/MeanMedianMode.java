@@ -4,12 +4,12 @@ import java.util.TreeMap;
 // Class to calculate the mean, median and mode for a user. Testing for this class can be found in the tests folder.
 public abstract class MeanMedianMode {
 
-    //TODO alter method so it can return multiple modes if appropriate
-    public static int mode(int[] nums){
+    public static Set<Integer> mode(int[] nums){
         int highestNumOfOccurrences = 0;
-        int mostFrequentNum = 0;
+        Set<Integer> mostFrequentNums = new HashSet<>();
         Map<Integer, Integer> amountOfTimesOccurred = new TreeMap<>();
 
+        // Populate map with amount of times each number has been found
         for (int num : nums){
             if (!amountOfTimesOccurred.containsKey(num)){
                 amountOfTimesOccurred.put(num, 1);
@@ -17,16 +17,23 @@ public abstract class MeanMedianMode {
                 amountOfTimesOccurred.put(num, amountOfTimesOccurred.get(num) + 1);
             }
         }
-        System.out.println(amountOfTimesOccurred);
 
+        // find the highest number of times a number occurs
         for (int num : amountOfTimesOccurred.keySet()){
             if (amountOfTimesOccurred.get(num) > highestNumOfOccurrences){
                 highestNumOfOccurrences = amountOfTimesOccurred.get(num);
-                mostFrequentNum = num;
             }
         }
-        System.out.println("The most frequently occurring number in your collection is: " + mostFrequentNum);
-        return mostFrequentNum;
+
+        // Any numbers that match this number occur most frequently and thus are the mode
+        for (int num : amountOfTimesOccurred.keySet()){
+            if (amountOfTimesOccurred.get(num) == highestNumOfOccurrences){
+                mostFrequentNums.add(num);
+            }
+        }
+
+        System.out.println("The most frequently occurring number in your collection is: " + mostFrequentNums);
+        return mostFrequentNums;
     }
 
    //TODO return values instead of printing, potentially use a list since we can't return two different value types?
