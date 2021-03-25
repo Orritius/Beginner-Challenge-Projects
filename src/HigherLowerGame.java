@@ -16,7 +16,7 @@ public class HigherLowerGame extends JFrame{
     public HigherLowerGame(){
         initComponents();
         go();
-        randomNumber = generateRandomNum();
+        randomNumber = generateRandomNum()
     }
 
     // create and initialise all components for the gui
