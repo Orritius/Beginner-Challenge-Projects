@@ -2,8 +2,6 @@ import javax.swing.*;
 import javax.swing.text.AbstractDocument;
 import java.awt.*;
 
-//TODO event handling code for no input or inputs that are over boundaries. Let the user play again!
-
 public class HigherLowerGame extends JFrame{
     private JPanel mainPanel;
     private JPanel topPanel;
@@ -22,7 +20,7 @@ public class HigherLowerGame extends JFrame{
     }
 
     // create and initialise all components for the gui
-    public void initComponents(){
+    private void initComponents(){
         setTitle("Higher/Lower Game");
         topPanel = new JPanel();
         mainPanel = new JPanel();
@@ -49,6 +47,7 @@ public class HigherLowerGame extends JFrame{
 
         guessButton.addActionListener(e -> guessButtonActionPerformed());
         userGuessTextField.addActionListener(e -> guessButtonActionPerformed());
+        playAgainButton.addActionListener(e -> playAgainButtonActionPerformed());
 
         // To ensure that the user can only enter three characters
         AbstractDocument userGuessDocument = (AbstractDocument) userGuessTextField.getDocument();
@@ -57,37 +56,48 @@ public class HigherLowerGame extends JFrame{
     }
 
     // Create gui and give it a size/set visible
-    public void go(){
+    private void go(){
         setSize(300, 127);
         setVisible(true);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setResizable(false);
     }
 
-    public static int generateRandomNum(){
-        return (int) (Math.random() * 101);
+    private static int generateRandomNum(){
+        // To stop generation of 0
+        return (int) (Math.random() * 100) + 1;
     }
 
-    public String beginGame(int userGuess){
-        String output = (userGuess > randomNumber) ? "Too High" : (userGuess < randomNumber) ? "Too Low" : "Correct!";
-
-        if (output.equals("Correct!")){
-            System.out.println(output);
-            return output;
+    private String beginGame(int userGuess){
+        String output;
+        if (userGuess < 0 || userGuess > 100){
+            output = "Please enter a number between 0 and 100";
         } else {
-            System.out.println(output);
-            return output;
+            output = (userGuess > randomNumber) ? "Too High" : (userGuess < randomNumber) ? "Too Low" : "Correct!";
         }
+        return output;
     }
-    public void guessButtonActionPerformed(){
-        String result = beginGame((Integer.parseInt(userGuessTextField.getText())));
-        if (result.equals("Correct!")){
-            userFeedbackLabel.setText(result);
-            userFeedbackLabel.setForeground(Color.GREEN);
-            guessButton.setEnabled(false);
-        } else {
-            userFeedbackLabel.setText(result);
+    private void guessButtonActionPerformed(){
+        try {
+            String result = beginGame((Integer.parseInt(userGuessTextField.getText())));
+            if (result.equals("Correct!")){
+                userFeedbackLabel.setText(result);
+                userFeedbackLabel.setForeground(Color.GREEN);
+                guessButton.setEnabled(false);
+                userGuessTextField.setEnabled(false);
+            } else {
+                userFeedbackLabel.setText(result);
+                userFeedbackLabel.setForeground(Color.RED);
+            }
+        } catch (NumberFormatException numberFormatException){
             userFeedbackLabel.setForeground(Color.RED);
+            userFeedbackLabel.setText("Please enter a valid number");
         }
+    }
+    private void playAgainButtonActionPerformed(){
+        randomNumber = generateRandomNum();
+        guessButton.setEnabled(true);
+        userGuessTextField.setEnabled(true);
+        userGuessTextField.setText("");
     }
 }
