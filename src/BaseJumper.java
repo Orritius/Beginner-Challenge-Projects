@@ -19,9 +19,7 @@ public class BaseJumper {
             while (result.intValue() > 0){
                 result = new BigDecimal(String.valueOf(currentNumber.divide(baseToConvertTo, 0,
                         RoundingMode.DOWN)));
-                System.out.println(result);
                 remainder = new BigDecimal(String.valueOf(currentNumber.remainder(baseToConvertTo)));
-                System.out.println(remainder);
                 convertedNumberString += Integer.toString(remainder.intValue());
                 currentNumber = result;
             }
