@@ -2,13 +2,14 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 
 // Ongoing program that will convert between any two bases within 2-16
-// Currently converts between base 10 and base 2
+// Currently converts between base 10 and bases 2-14
+//TODO allow other bases to be converted to decimal
 
 public class BaseJumper {
 
 
     public static void convertIntegerToBase(BigDecimal numToConvert, int baseNumberIsIn, BigDecimal baseToConvertTo){
-        //TODO base is between 2-16 (Presumably both 2nd and 3rd arguments)
+        //TODO check base is between 2-16 (Presumably both 2nd and 3rd arguments)
         String convertedNumberString = "";
         String reversedNumberString = "";
         BigDecimal currentNumber = new BigDecimal(String.valueOf(numToConvert));
